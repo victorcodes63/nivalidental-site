@@ -112,11 +112,6 @@ const StickyNav = () => {
 }
 
 export default function ServicesPage() {
-
-
-
-
-export default function ServicesPage() {
   const [query, setQuery] = useState('')
   const limitedTestimonials = testimonials.slice(0, 6)
 
@@ -176,7 +171,6 @@ export default function ServicesPage() {
       tag: 'High Satisfaction',
     },
   ], [])
-  
 
   const filteredServices = useMemo(
     () => services.filter((s) => s.title.toLowerCase().includes(query.toLowerCase())),
@@ -185,50 +179,29 @@ export default function ServicesPage() {
 
   return (
     <section className="relative min-h-screen px-4 sm:px-6 md:px-10 lg:px-24 pb-20 bg-gradient-to-br from-[#F0F4F8] to-[#DCE4EC] dark:from-[#0F172A] dark:to-[#1E293B] text-foreground overflow-hidden">
-
       {/* Hero */}
-<section className="relative text-center px-6 py-28 sm:py-32 bg-[url('/assets/hero.jpg')] bg-cover bg-center bg-no-repeat text-foreground overflow-hidden rounded-2xl shadow-xl mb-20 max-w-none w-full">
+      <section className="relative text-center px-6 py-28 sm:py-32 bg-[url('/assets/hero.jpg')] bg-cover bg-center bg-no-repeat text-foreground overflow-hidden rounded-2xl shadow-xl mb-20 max-w-none w-full">
+        <div className="absolute inset-0 bg-gradient-to-br from-white/85 to-white/75 dark:from-black/60 dark:to-slate-900/80 z-0 backdrop-blur-sm" />
+        <div className="absolute -top-10 -left-10 w-60 h-60 bg-emerald-200/30 dark:bg-emerald-400/10 rounded-full blur-3xl opacity-70 z-0" />
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-sky-200/20 dark:bg-blue-300/10 rounded-full blur-3xl opacity-50 z-0" />
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-primary bg-clip-text text-transparent bg-gradient-to-r from-blue-900 via-sky-500 to-emerald-400 dark:from-white dark:to-emerald-400 animate-[gradientShift_8s_ease-in-out_infinite] mb-5">
+              Elevating Dental Experiences
+            </h1>
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">
+              At Nivali Dental Clinic, your smile is our craft. 
+              Experience care that’s precise, personalized, and always centered around you.
+            </p>
+            <a href="/contact" className="inline-block px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-full shadow hover:bg-primary/90 transition">
+              Book an Appointment
+            </a>
+          </motion.div>
+        </div>
+      </section>
 
-{/* Gradient Overlay */}
-<div className="absolute inset-0 bg-gradient-to-br from-white/85 to-white/75 dark:from-black/60 dark:to-slate-900/80 z-0 backdrop-blur-sm" />
-
-{/* Soft Decorative Blur */}
-<div className="absolute -top-10 -left-10 w-60 h-60 bg-emerald-200/30 dark:bg-emerald-400/10 rounded-full blur-3xl opacity-70 z-0" />
-<div className="absolute bottom-0 right-0 w-72 h-72 bg-sky-200/20 dark:bg-blue-300/10 rounded-full blur-3xl opacity-50 z-0" />
-
-{/* Content */}
-<div className="relative z-10 max-w-4xl mx-auto">
-  <motion.div
-    initial={{ opacity: 0, y: -20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6 }}
-  >
-    <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-primary bg-clip-text text-transparent bg-gradient-to-r from-blue-900 via-sky-500 to-emerald-400 dark:from-white dark:to-emerald-400 animate-[gradientShift_8s_ease-in-out_infinite] mb-5">
-      Elevating Dental Experiences
-    </h1>
-
-    <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">
-      At Nivali Dental Clinic, your smile is our craft. 
-      Experience care that’s precise, personalized, and always centered around you.
-    </p>
-
-    <a
-      href="/contact"
-      className="inline-block px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-full shadow hover:bg-primary/90 transition"
-    >
-      Book an Appointment
-    </a>
-  </motion.div>
-</div>
-</section>
-
-
-      {/* Search and Nav */}
       <div className="relative z-10">
         <StickyNav />
-        
-
-        {/* Services + Testimonials */}
         <div className="space-y-28">
           {filteredServices.map((service, index) => (
             <div key={service.title} id={service.title.toLowerCase().replace(/\s+/g, '-')}>
@@ -264,67 +237,28 @@ export default function ServicesPage() {
           ))}
         </div>
 
-        {/* Contact Form CTA */}
-<section className="mt-32 px-6 py-24 bg-gradient-to-br from-primary to-emerald-700 dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-800 text-white dark:text-white rounded-3xl shadow-2xl text-center">
-  <div className="max-w-3xl mx-auto">
-    <motion.h2
-      className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight"
-      initial={{ opacity: 0, y: -10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-    >
-      Let’s Build Your Best Smile
-    </motion.h2>
-
-    <motion.p
-      className="text-lg sm:text-xl mb-8 leading-relaxed text-white/90 dark:text-gray-300 max-w-2xl mx-auto"
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: 0.2 }}
-    >
-      Book a consultation with Nivali Dental Clinic and experience precision care, gentle service, and stunning results — all under one roof.
-    </motion.p>
-
-    {/* Form */}
-    <form className="max-w-2xl mx-auto space-y-5">
-      <div className="grid sm:grid-cols-2 gap-5">
-        <input
-          type="text"
-          name="name"
-          placeholder="Full Name"
-          className="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-900 text-black dark:text-white border border-gray-300 dark:border-slate-700 placeholder:text-gray-500 dark:placeholder:text-gray-400 shadow-sm focus:ring-2 focus:ring-emerald-400 outline-none"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          className="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-900 text-black dark:text-white border border-gray-300 dark:border-slate-700 placeholder:text-gray-500 dark:placeholder:text-gray-400 shadow-sm focus:ring-2 focus:ring-emerald-400 outline-none"
-          required
-        />
+        {/* Contact CTA */}
+        <section className="mt-32 px-6 py-24 bg-gradient-to-br from-primary to-emerald-700 dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-800 text-white dark:text-white rounded-3xl shadow-2xl text-center">
+          <div className="max-w-3xl mx-auto">
+            <motion.h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight" initial={{ opacity: 0, y: -10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+              Let’s Build Your Best Smile
+            </motion.h2>
+            <motion.p className="text-lg sm:text-xl mb-8 leading-relaxed text-white/90 dark:text-gray-300 max-w-2xl mx-auto" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
+              Book a consultation with Nivali Dental Clinic and experience precision care, gentle service, and stunning results — all under one roof.
+            </motion.p>
+            <form className="max-w-2xl mx-auto space-y-5">
+              <div className="grid sm:grid-cols-2 gap-5">
+                <input type="text" name="name" placeholder="Full Name" className="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-900 text-black dark:text-white border border-gray-300 dark:border-slate-700 placeholder:text-gray-500 dark:placeholder:text-gray-400 shadow-sm focus:ring-2 focus:ring-emerald-400 outline-none" required />
+                <input type="email" name="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-900 text-black dark:text-white border border-gray-300 dark:border-slate-700 placeholder:text-gray-500 dark:placeholder:text-gray-400 shadow-sm focus:ring-2 focus:ring-emerald-400 outline-none" required />
+              </div>
+              <textarea name="message" rows={4} placeholder="Tell us how we can help..." className="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-900 text-black dark:text-white border border-gray-300 dark:border-slate-700 placeholder:text-gray-500 dark:placeholder:text-gray-400 shadow-sm focus:ring-2 focus:ring-emerald-400 outline-none" required />
+              <button type="submit" className="mt-2 inline-block px-8 py-3 bg-white text-primary dark:bg-emerald-600 dark:text-white rounded-full font-semibold hover:opacity-90 transition shadow-md">
+                Send Inquiry
+              </button>
+            </form>
+          </div>
+        </section>
       </div>
-
-      <textarea
-        name="message"
-        rows={4}
-        placeholder="Tell us how we can help..."
-        className="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-900 text-black dark:text-white border border-gray-300 dark:border-slate-700 placeholder:text-gray-500 dark:placeholder:text-gray-400 shadow-sm focus:ring-2 focus:ring-emerald-400 outline-none"
-        required
-      />
-
-      <button
-        type="submit"
-        className="mt-2 inline-block px-8 py-3 bg-white text-primary dark:bg-emerald-600 dark:text-white rounded-full font-semibold hover:opacity-90 transition shadow-md"
-      >
-        Send Inquiry
-      </button>
-    </form>
-  </div>
-</section>
-</div>
-</section>
+    </section>
   )
-}
 }
