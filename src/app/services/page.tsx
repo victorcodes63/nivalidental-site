@@ -18,8 +18,20 @@ const testimonials = [
   { name: 'Joan W.', quote: 'My whitening results blew me away. I’ve never been so confident smiling.' },
 ]
 
-const TestimonialCarousel = ({ items }) => {
-  const scrollRef = useRef(null)
+interface Testimonial {
+  name: string;
+  quote: string;
+}
+
+interface Service {
+  title: string;
+  description: string;
+  image: string;
+  tag?: string;
+}
+
+const TestimonialCarousel = ({ items }: { items: Testimonial[] }) => {
+  const scrollRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const container = scrollRef.current
@@ -52,7 +64,7 @@ const TestimonialCarousel = ({ items }) => {
 }
 
 const StickyNav = () => {
-  const [activeSection, setActiveSection] = useState('')
+  const [activeSection, setActiveSection] = useState<string>('')
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -112,13 +124,12 @@ const StickyNav = () => {
 }
 
 export default function ServicesPage() {
-  const [query, setQuery] = useState('')
   const limitedTestimonials = testimonials.slice(0, 6)
 
-  const services = useMemo(() => [
+  const services: Service[] = useMemo(() => [
     {
       title: 'General Dentistry',
-      description: 'Our General Dentistry service includes comprehensive oral evaluations, prophylaxis, diagnostic digital X-rays, and periodontal screening. We focus on early detection of dental caries and gingivitis, and deliver tailored oral hygiene plans,fluoride treatments and sealants. Our team is ISO Certified and MOH Approved, ensuring the highest standards of care.',
+      description: 'Our General Dentistry service includes comprehensive oral evaluations, prophylaxis, diagnostic digital X-rays, and periodontal screening. We focus on early detection of dental caries and gingivitis, and deliver tailored oral hygiene plans, fluoride treatments and sealants. Our team is ISO Certified and MOH Approved, ensuring the highest standards of care.',
       image: '/assets/general_dentistry.jpg',
       tag: 'MOH Approved',
     },
@@ -169,13 +180,10 @@ export default function ServicesPage() {
       description: 'Dental implantology services feature CBCT-guided placement, bone grafting, sinus lifts, and the use of titanium or zirconia implants. Final prosthetics are CAD/CAM-fabricated for precise occlusion and natural esthetics.',
       image: '/assets/implants.jpg',
       tag: 'High Satisfaction',
-    },
+    }
   ], [])
 
-  const filteredServices = useMemo(
-    () => services.filter((s) => s.title.toLowerCase().includes(query.toLowerCase())),
-    [query, services]
-  )
+  const filteredServices = useMemo(() => services, [services])
 
   return (
     <section className="relative min-h-screen px-4 sm:px-6 md:px-10 lg:px-24 pb-20 bg-gradient-to-br from-[#F0F4F8] to-[#DCE4EC] dark:from-[#0F172A] dark:to-[#1E293B] text-foreground overflow-hidden">
